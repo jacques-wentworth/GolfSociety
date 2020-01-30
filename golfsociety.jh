@@ -1,0 +1,214 @@
+entity Club {
+	id Integer
+    name String
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity ClubTee {
+	id Integer
+    name String
+	courseRating Double
+    slopeRating Integer
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity CompetitionFormat {
+	id Integer
+	name String
+    teamSize Integer
+    scoreSortOrder String
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity Differential {
+	id Integer
+	roundDate Date
+    clubName String
+    courseRating Double
+    slopeRating Integer
+    grossScore String
+    differential Double
+    exceptional Boolean
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity Member {
+	id Integer
+	sagaCode String
+    handicapIndex Double
+    handicapAdjustment Integer
+    handicapDate Date
+    mobileNo String
+    email String
+    dateOfBirth Date
+    active Boolean
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity Player {
+	id Integer
+	firstName String
+    surname String
+    handicap Double
+    active Boolean
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity Outing {
+	id Integer
+	outingDate Date
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity OutingCompetition {
+	id Integer
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity Season {
+	id Integer
+    name String
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity SeasonTrophy {
+	id Integer
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity Team {
+	id Integer
+	teamNo Integer
+    score Integer
+    finishPosition Integer
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity TeamPlayer {
+	id Integer
+    handicap Integer
+    grossScore Integer
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity Trophy {
+	id Integer
+	name String
+    description String
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+entity TrophyResult {
+	id Integer
+	points Double
+	created Date
+    createdUser String
+	modified Date
+    modifiedUser String
+}
+
+relationship OneToMany {
+	Club{club} to ClubTee
+}
+
+relationship OneToMany {
+	Club{club} to Member
+}
+
+relationship OneToMany {
+	Member{member} to Differential
+}
+
+relationship OneToMany {
+	ClubTee{clubTee} to Differential
+}
+
+relationship OneToOne {
+	Player{player} to Member
+}
+
+relationship OneToMany {
+	Club{Club} to Outing
+}
+
+relationship OneToMany {
+	Season{season} to Outing
+}
+
+relationship OneToMany {
+	Outing{outing} to OutingCompetition
+}
+
+relationship OneToMany {
+	CompetitionFormat{competitionFormat} 
+    to OutingCompetition
+}
+
+relationship OneToMany {
+	Team{team} to TeamPlayer
+}
+
+relationship OneToMany {
+	Player{player} to TeamPlayer
+}
+
+relationship OneToMany {
+	Season{season} to
+    SeasonTrophy 
+}
+
+relationship OneToMany {
+	Trophy{trophy} to
+    SeasonTrophy 
+}
+
+relationship OneToMany {
+	Outing{outing} to TrophyResult
+}
+
+relationship OneToMany {
+	Player{player} to TrophyResult
+}
+
+relationship OneToMany {
+	SeasonTrophy{seasonTrophy} to TrophyResult
+}
